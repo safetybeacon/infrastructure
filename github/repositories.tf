@@ -1,9 +1,12 @@
 # Manage repositories within the organisation
+# See: https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository
 
+
+# Terraform can't manage repos that begin with a period.
 # resource "github_repository" ".github" {
 # 	name = ".github"
 # }
-# Terraform can't manage repos that begin with a period.
+
 
 resource "github_repository" "beacon-api" {
 	name 					= "beacon-api"
@@ -12,6 +15,9 @@ resource "github_repository" "beacon-api" {
 	has_issues 				= true
 	has_projects 			= true
 	has_wiki 				= true
+
+	delete_branch_on_merge 	= true
+	license_template 		= "gpl-3.0"
 }
 
 resource "github_repository" "infrastructure" {
@@ -21,6 +27,8 @@ resource "github_repository" "infrastructure" {
 	has_issues 				= true
 	has_projects 			= true
 	has_wiki 				= true
+
+	delete_branch_on_merge 	= true
 }
 
 resource "github_repository" "website" {
@@ -31,4 +39,7 @@ resource "github_repository" "website" {
 	has_issues 				= true
 	has_projects 			= true
 	has_wiki 				= true
+
+	delete_branch_on_merge 	= true
+	license_template 		= "gpl-3.0"
 }
